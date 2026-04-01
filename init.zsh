@@ -31,76 +31,15 @@ p6df::modules::atlassian::home::symlinks() {
 ######################################################################
 #<
 #
-# Function: str str = p6df::modules::atlassian::prompt::mod()
+# Function: words atlassian = p6df::modules::atlassian::profile::mod()
 #
 #  Returns:
-#	str - str
+#	words - atlassian
 #
-#  Environment:	 ATLASSIAN_API_TOKEN ATLASSIAN_EMAIL ATLASSIAN_SITE P6_DFZ_PROFILE_ATLASSIAN
+#  Environment:	 ATLASSIAN_API_TOKEN
 #>
 ######################################################################
-p6df::modules::atlassian::prompt::mod() {
-  local str=""
-  local profile="$P6_DFZ_PROFILE_ATLASSIAN"
-  local site="$ATLASSIAN_SITE"
-  local email="$ATLASSIAN_EMAIL"
-  local token="$ATLASSIAN_API_TOKEN"
+p6df::modules::atlassian::profile::mod() {
 
-  if p6_string_blank_NOT "$profile"; then
-    str="atlassian:\t  ${profile}:"
-    if p6_string_blank_NOT "$site"; then
-      str=$(p6_string_append "$str" "$site" " ")
-    fi
-    if p6_string_blank_NOT "$email"; then
-      str=$(p6_string_append "$str" "$email" "/")
-    fi
-    if p6_string_blank_NOT "$token"; then
-      str=$(p6_string_append "$str" "api" "/")
-    fi
-  fi
-
-  p6_return_str "$str"
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::atlassian::profile::on(profile, code)
-#
-#  Args:
-#	profile -
-#	code - shell code block (export ATLASSIAN_SITE=... ATLASSIAN_EMAIL=... ATLASSIAN_API_TOKEN=...)
-#
-#  Environment:	 ATLASSIAN_API_TOKEN ATLASSIAN_EMAIL ATLASSIAN_SITE P6_DFZ_PROFILE_ATLASSIAN
-#>
-######################################################################
-p6df::modules::atlassian::profile::on() {
-  local profile="$1"
-  local code="$2"
-
-  p6_run_code "$code"
-
-  p6_env_export "P6_DFZ_PROFILE_ATLASSIAN" "$profile"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::atlassian::profile::off(code)
-#
-#  Args:
-#	code - shell code block previously passed to profile::on
-#
-#  Environment:	 ATLASSIAN_API_TOKEN ATLASSIAN_EMAIL ATLASSIAN_SITE P6_DFZ_PROFILE_ATLASSIAN
-#>
-######################################################################
-p6df::modules::atlassian::profile::off() {
-  local code="$1"
-
-  p6_env_unset_from_code "$code"
-  p6_env_export_un P6_DFZ_PROFILE_ATLASSIAN
-
-  p6_return_void
+  p6_return_words 'atlassian' '$ATLASSIAN_API_TOKEN'
 }
