@@ -41,5 +41,5 @@ p6df::modules::atlassian::home::symlinks() {
 ######################################################################
 p6df::modules::atlassian::profile::mod() {
 
-  p6_return_words 'atlassian' '$ATLASSIAN_API_TOKEN'
+  p6_return_words 'atlassian' "$"
 }
