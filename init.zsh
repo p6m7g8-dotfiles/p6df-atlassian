@@ -36,7 +36,7 @@ p6df::modules::atlassian::home::symlinks() {
 #  Returns:
 #	words - atlassian
 #
-#  Environment:	 ATLASSIAN_API_TOKEN
+#  Environment:	 ATLASSIAN_EMAIL ATLASSIAN_ORG_API_KEY ATLASSIAN_ORG_API_KEY_WRITE ATLASSIAN_ORG_ID ATLASSIAN_SITE
 #>
 ######################################################################
 p6df::modules::atlassian::profile::mod() {
